@@ -1,10 +1,13 @@
-declare module 'react-native-compass-heading' {
-  export const start: (
-    threshold: number,
-    callback: ({ heading: number, accuracy: number }) => void
-  ) => Promise<boolean>;
+declare module "react-native-compass-heading" {
 
-  export const stop: () => Promise<void>;
+    export interface CompassHeading {
+        heading:number; 
+        accuracy:number;
+    }
 
-  export const hasCompass: () => Promise<boolean>;
+    type SuccessCallback = (heading: CompassHeading) => void;
+
+    export function stop():void;
+
+    export function start(degree_update_rate:number,callback:SuccessCallback):void;
 }
